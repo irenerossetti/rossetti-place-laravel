@@ -9,13 +9,20 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
+// tailwind.config.js
+
+theme: {
+    extend: {
+        fontFamily: {
+            sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+        },
+        colors: {
+            'rossetti-red': '#DC2A48',
+            'rossetti-gold': '#EDB026',
+            'rossetti-orange': '#E95F30',
+            'rossetti-beige': '#F3D9A6',
+            'rossetti-maroon': '#8C1E3D',
         },
     },
-
-    plugins: [forms],
+ },
 };

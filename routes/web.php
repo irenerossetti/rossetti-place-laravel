@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,5 +24,5 @@ Route::get('/promociones', [ProductController::class, 'showPromotions'])->middle
 Route::get('/pago', function () {
     return view('pago'); // Simplemente devuelve la vista 'pago.blade.php'
 })->middleware('auth')->name('pago'); // Le ponemos un nombre para usarla más fácil después
-
+Route::post('/procesar-pago', [PaymentController::class, 'process'])->middleware('auth')->name('payment.process');
 require __DIR__.'/auth.php';

@@ -7,30 +7,43 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+    <body class="font-sans antialiased bg-gray-100">
+        <div class="flex h-screen">
+            <aside class="w-64 bg-rossetti-beige flex flex-col p-6">
+                <a href="{{ route('dashboard') }}" class="mb-8">
+                    <h1 class="text-2xl font-bold text-rossetti-maroon">ROSSETTI'S PLACE</h1>
+                </a>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+                <nav class="flex flex-col space-y-2">
+                    <a href="{{ route('dashboard') }}" class="py-2 px-4 rounded hover:bg-rossetti-gold/50">Menú</a>
+                    <a href="/catalogo" class="py-2 px-4 rounded hover:bg-rossetti-gold/50">Perfumes</a>
+                    <a href="#" class="py-2 px-4 rounded hover:bg-rossetti-gold/50">Salud</a>
+                    <a href="#" class="py-2 px-4 rounded hover:bg-rossetti-gold/50">Maquillaje</a>
+                    <a href="/promociones" class="py-2 px-4 rounded hover:bg-rossetti-gold/50">Promociones del mes</a>
+                </nav>
+                
+                <div class="mt-auto">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); this.closest('form').submit();"
+                                class="py-2 px-4 rounded hover:bg-rossetti-gold/50">
+                            Cerrar Sesión &rarr;
+                        </a>
+                    </form>
+                </div>
+            </aside>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="flex-1 overflow-y-auto">
+                <main>
+                    {{ $slot }}
+                </main>
+            </div>
         </div>
     </body>
 </html>
